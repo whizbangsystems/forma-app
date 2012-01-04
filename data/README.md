@@ -38,7 +38,7 @@ You would then create the following `idn.vrt` file:
 The `<srcregion>` BOX was created by uploading the CSV to CartoDB and running:
 
 ```sql                                                     
-select pg_extent(the_geom) from table;                                                                                     
+SELECT st_astext(st_extent(the_geom)) FROM moratorium_idn_central_kalimantan;
 ```      
                                                                                                                      
 After that I ran this command:
