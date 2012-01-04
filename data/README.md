@@ -45,5 +45,5 @@ After that i ran this command:
 
 ```shell                                                   
 gdal_grid -a invdist:power=2.0:smoothing=1.0 -txe 85000 89000 -tye 894000 890000 -outsize 400 400 -of GTiff -ot Float64 -l\
- idn header.vrt idn.tiff 
+ idn idn.vrt idn.tiff 
 ```
