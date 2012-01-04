@@ -41,9 +41,8 @@ The `<srcregion>` BOX was created by uploading the CSV to CartoDB and running:
 select pg_extent(the_geom) from table;                                                                                     
 ```      
                                                                                                                      
-After that i ran this command:
+After that I ran this command:
 
 ```shell                                                   
-gdal_grid -a invdist:power=2.0:smoothing=1.0 -txe 85000 89000 -tye 894000 890000 -outsize 400 400 -of GTiff -ot Float64 -l\
- idn idn.vrt idn.tiff 
+gdal_grid -a invdist:power=2.0:smoothing=1.0 -txe 85000 89000 -tye 894000 890000 -outsize 400 400 -of GTiff -ot Float64 -l idn idn.vrt idn.tiff 
 ```
