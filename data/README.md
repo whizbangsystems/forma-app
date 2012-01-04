@@ -23,19 +23,21 @@ lat,lon,m201108
    
 You would then create the following `idn.vrt` file:
 
-```xml                                                                                                                        
-<OGRVRTDataSource>                                                                                                         
-    <OGRVRTLayer name="idn">                                                                                               
-        <SrcDataSource>idn.csv</SrcDataSource>                                                                             
-        <SrcRegion clip="true">BOX(110.62 -3.6875,116.0599 0.9125)</SrcRegion>                                             
-        <GeometryType>wkbPoint</GeometryType>                                                                              
-        <LayerSRS>WGS84</LayerSRS>                                                                                         
-        <GeometryField encoding="PointFromColumns" x="lon" y="lat"/>                                                       
-    </OGRVRTLayer>                                                                                                         
-</OGRVRTDataSource>                                                                                                        
+```xml                                                                                                                    
+<OGRVRTDataSource>
+    <OGRVRTLayer name="idn">
+        <SrcDataSource>idn.csv</SrcDataSource> 
+        <SrcRegion clip="true">POLYGON((110.62 -3.6875,110.62 0.9125,116.0599 0.9125,116.0599 -3.6875,110.62 -3.6875))</SrcRegion>
+        <GeometryType>wkbPoint</GeometryType> 
+        <LayerSRS>WGS84</LayerSRS>
+        <GeometryField encoding="PointFromColumns" x="lon" y="lat"/> 
+        <Field name="lat" src="lat" type="Real" precision="7"/>
+        <Field name="lon" src="lon" type="Real" precision="7"/>
+    </OGRVRTLayer>
+</OGRVRTDataSource>
 ```
                                                                                                                       
-The `<srcregion>` BOX was created by uploading the CSV to CartoDB and running:
+The `<srcregion>` POLYGON was created by uploading the CSV to CartoDB and running:
 
 ```sql                                                     
 SELECT st_astext(st_extent(the_geom)) FROM moratorium_idn_central_kalimantan;

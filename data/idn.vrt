@@ -5,6 +5,8 @@
         <GeometryType>wkbPoint</GeometryType> 
         <LayerSRS>WGS84</LayerSRS>
         <GeometryField encoding="PointFromColumns" x="lon" y="lat"/> 
+        <Field name="lat" src="lat" type="Real" precision="7"/>
+        <Field name="lon" src="lon" type="Real" precision="7"/>
     </OGRVRTLayer>
 </OGRVRTDataSource>
 
