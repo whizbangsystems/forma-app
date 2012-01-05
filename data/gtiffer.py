@@ -77,7 +77,36 @@ def gdal_grid(filename, layers):
         logging.info(output)
 
 def filter_row(row):
-    return dict(lat=1, lon=2, period=3)
+    vals = row.split(",")
+    lat, lon = vals[:2]
+    # field #3
+    hansen = int(vals[2])
+
+    prob_data = [int(val) for val in vals[3:]]
+
+    # default is no defor
+    period = 0
+
+    # hansen runs from 0-400 (0, 100, 200, 300, 400), representing the # of
+    # 500m Hansen 'hits' in a given MODIS pixel
+    # we assign hansen values to 254 because we don't want to say FORMA
+    # detected something Matt already detected it between 2000-5.
+
+    if hansen != 0:
+        period = 254
+    else:
+        # but if he didn't detect anything, FORMA values are fair game
+        # 
+
+        # this gets us the period without having to worry about the date!
+        # assumes the 4th field is where probs start, and that they start
+        # for period 200601
+        for i in range(len(prob_data)):
+            if prob_data[i] >= 50:
+                period = i
+                break
+    
+    return dict(lat=lat, lon=lon, period=period)
 
 def bandify(filename):
     logging.info(filename)
