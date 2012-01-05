@@ -2,9 +2,18 @@
 
 This directory contains code for processing FORMA data into formats used by the web app.
 
-## Converting CSV to GeoTIFF ##
+## Converting CSV to a single band GeoTIFF ##
 
-The `gdal-grid` script converts CSV to GeoTIFF!
+Instead of dealing with pixel probabilities, we're encoding periods into a single band which scales up to 11 years on a single band. Here's the schema:
+
+```
+0: No deforrestation
+1-250: Deforrestation period as integer (1 = January 2006, 2 = February 2006, ...)
+251-254: Reserved
+255: NODATA
+```
+
+First we us the `gdal-grid` script to convert CSV to GeoTIFF:
                                                                                          
 http://www.gdal.org/gdal_grid.html                                                                                       
                                                                                                                            
@@ -46,7 +55,11 @@ Here's the output:
 
 ![](http://i.imgur.com/ry778.png)
 
-Next you have to warp them via `gdalwarp` like this:
+All of this is automated in the `gtiffer.py` script.
+
+## Converting CSV into multi-band GeoTIFF ##
+
+First you have to warp GeoTIFFs created above via `gdalwarp` like this:
 
 ```shell
 gdalwarp IDN_riau_201108-prob201108.tiff IDN_riau_201108-prob201108-warp.tiff
