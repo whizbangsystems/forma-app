@@ -1,7 +1,23 @@
 #!/usr/bin/env python
+#
+# Copyright 2011 Whizbang Systems LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 
 """This module contains a CLI for creating an n-band GeoTIFF from multiple 
-layers in a CSV file. It requires GDAL to run."""
+layers in a CSV file. It supports creating a single-band GeoTIFF from
+multiple periods in a CSV file. It requires GDAL to run."""
 
 import csv
 import logging
@@ -46,7 +62,7 @@ def _get_options():
 
     return parser.parse_args()[0]
 
-def _gdal_grid(filename, layers):
+def gdal_grid(filename, layers):
     """Writes multiple GeoTIFF files, 1 per layer."""
     for layer in layers:
         d = dict(layer=layer, filename=filename)
@@ -78,14 +94,11 @@ def _merge_grids(filename):
 def main():
     logging.basicConfig(level=logging.DEBUG)
     options = _get_options()
-
-
-
     action = options.action
     if action == 'n-band':
         filename = os.path.splitext(options.filename)[0]
         layers = [x.strip() for x in options.layers.split(',')]
-        _gdal_grid(filename, layers)
+        gdal_grid(filename, layers)
     elif action == '1-band':
         filename = options.filename
         bandify(filename)
