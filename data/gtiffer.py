@@ -61,13 +61,15 @@ def _gdal_grid(filename, layers):
         logging.info(output)
 
 def filter_row(row):
-    return dict(lat=1, lng=2, period=3)
+    return dict(lat=1, lon=2, period=3)
 
 def bandify(filename):
-    fout = open('%s-bandified.csv' % os.path.splitext(filename)[1], 'w')
+    logging.info(filename)
+    fout = open('%s-bandified.csv' % os.path.splitext(filename)[0], 'w')
     dw = csv.DictWriter(fout, ['lat', 'lon', 'period'])
+    dw.writeheader()
     for row in csv.DictReader(open(filename, 'r')):
-      dw.writerow(filter_fow(row))
+      dw.writerow(filter_row(row))
 
 def _merge_grids(filename):
     # TODO
@@ -77,13 +79,15 @@ def main():
     logging.basicConfig(level=logging.DEBUG)
     options = _get_options()
 
-    filename = os.path.splitext(options.filename)[0]
+
 
     action = options.action
     if action == 'n-band':
+        filename = os.path.splitext(options.filename)[0]
         layers = [x.strip() for x in options.layers.split(',')]
         _gdal_grid(filename, layers)
     elif action == '1-band':
+        filename = options.filename
         bandify(filename)
     
 if __name__ == '__main__':
