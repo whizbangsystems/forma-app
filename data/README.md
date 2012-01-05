@@ -46,5 +46,5 @@ SELECT st_astext(st_extent(the_geom)) FROM moratorium_idn_central_kalimantan;
 After that I ran this command:
 
 ```shell                                                   
-gdal_grid -a invdist:power=2.0:smoothing=1.0 -txe 85000 89000 -tye 894000 890000 -outsize 400 400 -of GTiff -ot Float64 -l idn idn.vrt idn.tiff 
+gdal_grid -a nearest -of GTiff -l IDN_riau_201010_201108 IDN_riau_201010_201108.vrt IDN_riau_201010_201108.tiff
 ```
