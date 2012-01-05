@@ -103,7 +103,7 @@ def filter_row(row):
                 pidx = val
                 break
     
-    return dict(lat=lat, lon=lon, period=period)
+    return dict(lat=lat, lon=lon, period=pidx)
 
 def bandify(filename):
     logging.info(filename)
