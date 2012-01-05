@@ -77,6 +77,11 @@ def gdal_grid(filename, layers):
         logging.info(output)
 
 def filter_row(row):
+    probs = sorted([x for x in row.keys() if x.startswith('prob')])
+    hval = int(row['hansen'])
+    lat = float(row['lat'])
+    lon = float(row['lon'])
+        
     vals = row.split(",")
     lat, lon = vals[:2]
     # field #3
@@ -101,6 +106,12 @@ def filter_row(row):
         # this gets us the period without having to worry about the date!
         # assumes the 4th field is where probs start, and that they start
         # for period 200601
+        for p in probs:
+            val = int(row[p])
+            if val >= 50:
+                period = val
+        
+
         for i in range(len(prob_data)):
             if prob_data[i] >= 50:
                 period = i
