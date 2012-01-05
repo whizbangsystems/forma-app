@@ -1,9 +1,0 @@
-<OGRVRTDataSource>
-    <OGRVRTLayer name="idn">
-        <SrcDataSource>idn.csv</SrcDataSource> 
-        <SrcRegion clip="true">BOX(110.62 -3.6875,116.0599 0.9125)</SrcRegion>
-        <GeometryType>wkbPoint</GeometryType> 
-        <LayerSRS>WGS84</LayerSRS>
-        <GeometryField encoding="PointFromColumns" x="lon" y="lat"/> 
-    </OGRVRTLayer>
-</OGRVRTDataSource>
