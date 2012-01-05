@@ -1,9 +1,6 @@
 <OGRVRTDataSource>
-    <OGRVRTLayer name="IDN_riau_201108">
-        <SrcDataSource>IDN_riau_201108.csv</SrcDataSource> 
-        <SrcRegion clip="true">
-            POLYGON((100.57 1.68, 103.07 1.68, 103.07 -0.82, 100.57 -0.82, 100.57 1.68))
-        </SrcRegion>
+    <OGRVRTLayer name="IDN_riau_201108_nh_100">
+        <SrcDataSource>IDN_riau_201108_nh_100.csv</SrcDataSource> 
         <GeometryType>wkbPoint</GeometryType> 
         <LayerSRS>WGS84</LayerSRS>
         <GeometryField encoding="PointFromColumns" x="lon" y="lat" z="prob201108"/> 
