@@ -8,6 +8,7 @@ n = 0
 
 for line in fp:
     if n == 0:
+        out_fp.write(line.strip() + "\n")
         n += 1
         continue
         
