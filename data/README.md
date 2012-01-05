@@ -45,3 +45,18 @@ Note that the radius is defined in terms of the pixel units (i.e. size), NOT pix
 Here's the output:
 
 ![](http://i.imgur.com/ry778.png)
+
+Next you have to warp them via `gdalwarp` like this:
+
+```shell
+gdalwarp IDN_riau_201108-prob201108.tiff IDN_riau_201108-prob201108-warp.tiff
+```
+
+And then create a combined VRT (one tiff per band)
+
+```shell
+gdalbuildvrt IDN_riau_201108-prob201108-warp.vrt IDN_riau_201108-prob201108-warp.tiff
+```
+
+Now `IDN_riau_201108-prob201108-warp.vrt` defines a GeoTIFF with multiple bands. Final move is another call to `gdal_grid` to merge them all into a n-band GeoTIFF.
+
