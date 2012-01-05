@@ -12,7 +12,7 @@ For this to work we need to create a Virtual Format header for the CSV file whic
                                                                 
 http://www.gdal.org/ogr/drv_vrt.html                                                                                       
                                                                                                                            
-For example, here's a snippet of the `idn.csv` test data:
+For example, here's a snippet of the `IDN_riau_201108_nh_100.csv` test data:
 
 ```csv
 lat,lon,prob201108
