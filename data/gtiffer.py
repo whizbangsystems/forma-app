@@ -113,7 +113,7 @@ def bandify(filename):
     fout = open('%s-bandified.csv' % os.path.splitext(filename)[0], 'w')
     dw = csv.DictWriter(fout, ['lat', 'lon', 'period'])
     dw.writeheader()
-    for row in csv.DictReader(open(filename, 'r')):
+    for row in csv.DictReader(open(filename, 'r'), skipinitialspace=True):
       dw.writerow(filter_row(row))
 
 def _merge_grids(filename):
