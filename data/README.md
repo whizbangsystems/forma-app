@@ -37,6 +37,7 @@ You would then create the following `idn.vrt` file:
 Given the .csv and .vrt files, we run the following command to get the GeoTIFF:
 
 ```shell                                                   
-gdal_grid -ot Int16 -tye -.82 1.68 -txe 100.57 103.07 -zfield prob201108 -a nearest:radius1=.0083333:radius2=.0083333:nodata=255 -of GTiff -l IDN_riau_201108_nh_100 IDN_riau_201108.vrt IDN_riau_201108_nh_100.tiff```
+gdal_grid -ot Int16 -tye -.82 1.68 -txe 100.57 103.07 -zfield prob201108 -a nearest:radius1=.0083333:radius2=.0083333:nodata=255 -of GTiff -l IDN_riau_201108_nh_100 IDN_riau_201108.vrt IDN_riau_201108_nh_100.tiff
+```
 
 Note that the radius defines the pixel size.
