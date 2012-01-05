@@ -41,3 +41,7 @@ gdal_grid -ot Int16 -tye -.82 1.68 -txe 100.57 103.07 -zfield prob201108 -a near
 ```
 
 Note that the radius defines the pixel size.
+
+Here's the output:
+
+![](http://i.imgur.com/ry778.png)
