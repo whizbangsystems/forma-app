@@ -6,4 +6,3 @@
         <GeometryField encoding="PointFromColumns" x="lon" y="lat" z="prob201108"/> 
     </OGRVRTLayer>
 </OGRVRTDataSource>
-
