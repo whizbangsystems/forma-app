@@ -1,0 +1,8 @@
+<OGRVRTDataSource>
+    <OGRVRTLayer name="IDN-bandified">
+        <SrcDataSource>IDN-bandified.csv</SrcDataSource> 
+        <GeometryType>wkbPoint</GeometryType> 
+        <LayerSRS>WGS84</LayerSRS>
+        <GeometryField encoding="PointFromColumns" x="lon" y="lat" z="period"/> 
+    </OGRVRTLayer>
+</OGRVRTDataSource>
