@@ -21,7 +21,7 @@ lat,lon,prob201108
 1.654167,100.5711,101
 ```                                                                                 
    
-You would then create the following `idn.vrt` file:
+You would then create the following `IDN_riau_201108_nh_100.vrt` file:
 
 ```xml                                                                                                                    
 <OGRVRTDataSource>
