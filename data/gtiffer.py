@@ -79,7 +79,11 @@ def gdal_grid(filename, layers):
 def filter_row(row):
     # this gets us the period index without having to worry about the date!
     # assumes starts at 200601
-    probs = sorted([x for x in row.keys() if x.startswith('prob')])
+    try:
+        # TODO(robin): Why is x sometimes null here? Check SE_Asia.csv format.
+        probs = sorted([x for x in row.keys() if x and x.startswith('prob')])
+    except:
+        logging.info(row)
 
     hval = int(row['hansen'])
     lat = float(row['lat'])
