@@ -36,7 +36,7 @@ VRT_TEMPLATE = """<OGRVRTDataSource>
     </OGRVRTLayer>
 </OGRVRTDataSource>"""
 
-CMD_TEMPLATE = """gdal_grid -ot Int16 -tye -.82 1.68 -txe 100.57 103.07 -zfield %(layer)s -a nearest:radius1=.0083333:radius2=.0083333:nodata=255 -of GTiff -l %(filename)s %(filename)s-%(layer)s.vrt %(filename)s-%(layer)s.tiff"""
+CMD_TEMPLATE = """gdal_grid -ot Int16 -outsize 7847 5028 -tye -11.57917 30.32083 -txe 89.91154 155.3057 -zfield %(layer)s -a nearest:radius1=.0083333:radius2=.0083333:nodata=255 -of GTiff -l %(filename)s %(filename)s-%(layer)s.vrt %(filename)s-%(layer)s.tiff"""
 
 def _get_options():
     """Creates and returns an new OptionParser with options."""
