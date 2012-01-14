@@ -73,3 +73,10 @@ gdalbuildvrt IDN_riau_201108-prob201108-warp.vrt IDN_riau_201108-prob201108-warp
 
 Now `IDN_riau_201108-prob201108-warp.vrt` defines a GeoTIFF with multiple bands. Final move is another call to `gdal_grid` to merge them all into a n-band GeoTIFF.
 
+# By the way - 500m warping
+
+Although the data are actually 1km resolution (0.00833333 deg.), we are very close to having 500m data (0.004166666 deg.). So to facilitate app development we've gdalwarped the file to that higher resolution:
+
+```shell
+gdalwarp -tr .0041666666 .0041666666 -overwrite -srcnodata 255 -dstnodata 255 SE_Asia_clean-bandified-period.tiff SE_Asia_500m.tif
+```
