@@ -1,8 +1,0 @@
-<OGRVRTDataSource>
-    <OGRVRTLayer name="SE_Asia_clean-bandified">
-        <SrcDataSource>SE_Asia_clean-bandified.csv</SrcDataSource> 
-        <GeometryType>wkbPoint</GeometryType> 
-        <LayerSRS>WGS84</LayerSRS>
-        <GeometryField encoding="PointFromColumns" x="lon" y="lat" z="period"/> 
-    </OGRVRTLayer>
-</OGRVRTDataSource>
