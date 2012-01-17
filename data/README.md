@@ -80,3 +80,10 @@ Although the data are actually 1km resolution (0.00833333 deg.), we are very clo
 ```shell
 gdalwarp -tr .0041666666 .0041666666 -overwrite -srcnodata 255 -dstnodata 255 SE_Asia_clean-bandified-period.tiff SE_Asia_500m.tif
 ```
+# Notes on speed
+
+gdal_grid is incredibly slow with large geographic extents (e.g. SE Asia). Arc's Points to Raster tool will get through the same area in less than a minute. So we do that for the moment, then warp after the fact, which is fast and is nice for optimizing the data type.
+
+```shell
+gdalwarp -dstnodata 255 -ot Byte -s_srs WGS84 -t_srs EPSG:3857 asia_wgs84.tif asia_webmerc.tif
+```
