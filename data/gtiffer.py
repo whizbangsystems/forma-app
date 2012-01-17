@@ -115,8 +115,13 @@ def bandify(filename):
     dw = csv.DictWriter(fout, ['lat', 'lon', 'period'])
     dw.writeheader()
     for row in csv.DictReader(open(filename, 'r'), skipinitialspace=True):
+      try:
+        float(row.values()[0])
+      except ValueError:
+        print "Skipping mid-file header"
+        continue
       dw.writerow(filter_row(row))
-
+  
 def _merge_grids(filename):
     # TODO
     pass
