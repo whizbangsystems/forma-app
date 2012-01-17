@@ -73,17 +73,16 @@ gdalbuildvrt IDN_riau_201108-prob201108-warp.vrt IDN_riau_201108-prob201108-warp
 
 Now `IDN_riau_201108-prob201108-warp.vrt` defines a GeoTIFF with multiple bands. Final move is another call to `gdal_grid` to merge them all into a n-band GeoTIFF.
 
-# By the way - 500m warping
-
-Although the data are actually 1km resolution (0.00833333 deg.), we are very close to having 500m data (0.004166666 deg.). So to facilitate app development we've gdalwarped the file to that higher resolution:
-
-```shell
-gdalwarp -tr .0041666666 .0041666666 -overwrite -srcnodata 255 -dstnodata 255 SE_Asia_clean-bandified-period.tiff SE_Asia_500m.tif
-```
-# Notes on speed
+# Notes on speed and resolution
 
 gdal_grid is incredibly slow with large geographic extents (e.g. SE Asia). Arc's Points to Raster tool will get through the same area in less than a minute. So we do that for the moment, then warp after the fact, which is fast and is nice for optimizing the data type.
 
+Although the data are actually 1km resolution (0.00833333 deg.), we are very close to having 500m data (0.004166666 deg.). So to facilitate app development we've gdalwarped the file to that higher resolution.
+
 ```shell
-gdalwarp -dstnodata 255 -ot Byte -s_srs WGS84 -t_srs EPSG:3857 asia_wgs84.tif asia_webmerc.tif
+# convert to nominal 500m resolution, also reducing data type to byte
+gdalwarp -dstnodata 255 -ot Byte -tr .0041666666 .0041666666 Asia_wgs84_1km.tif Asia_wgs84_500m.tif
+
+# warp to EPSG 3857
+gdalwarp -dstnodata 255 -ot Byte -s_srs WGS84 -t_srs EPSG:3857 Asia_wgs84_500m.tif Asia_webmerc_500m.tif
 ```
