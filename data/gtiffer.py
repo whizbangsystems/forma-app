@@ -89,22 +89,25 @@ def filter_row(row):
     lat = float(row['lat'])
     lon = float(row['lon'])
     
-    # default is no defor
-    pidx = 0
+    # default prob index (pidx) is no defor (but not nodata, which is 255)
+    pidx = 254
 
     # hansen runs from 0-400 (0, 100, 200, 300, 400), representing the # of
     # 500m Hansen 'hits' in a given MODIS pixel
-    # we assign hansen values to 254 because we don't want to say FORMA
-    # detected something Matt already detected it between 2000-5.
+    # we assign hansen values to 0 because we don't want to say FORMA
+    # detected something Matt already detected between 2000-5.
 
     if hval != 0:
-        pidx = 254
+        pidx = 0
     else:
         # but if he didn't detect anything, FORMA values are fair game
-        for p in probs:
-            val = int(row[p])
+        # we want to store the index of the value
+        for i in range(len(probs)):
+            # get the value for the period of interest
+            val = int(row[probs[i]])
             if val >= 50:
-                pidx = val
+                # zero is reserved for Hansen, per Andrew's request 1/17/12
+                pidx = i + 1
                 break
     
     return dict(lat=lat, lon=lon, period=pidx)
