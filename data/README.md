@@ -81,8 +81,8 @@ Although the data are actually 1km resolution (0.00833333 deg.), we are very clo
 
 ```shell
 # convert to nominal 500m resolution, also reducing data type to byte
-gdalwarp -dstnodata 255 -ot Byte -tr .0041666666 .0041666666 Asia_wgs84_1km.tif Asia_wgs84_500m.tif
+gdalwarp -dstnodata 255 -ot Byte -tr .0041666666 .0041666666 asia_wgs84_1km.tif asia_wgs84_500m.tif
 
 # warp to EPSG 3857
-gdalwarp -dstnodata 255 -ot Byte -s_srs WGS84 -t_srs EPSG:3857 Asia_wgs84_500m.tif Asia_webmerc_500m.tif
+gdalwarp -dstnodata 255 -ot Byte -s_srs WGS84 -t_srs EPSG:3857 asia_wgs84_500m.tif asia_webmerc_500m.tif
 ```
